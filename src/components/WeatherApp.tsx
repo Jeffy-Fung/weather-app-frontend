@@ -1,5 +1,12 @@
 import { useCurrentWeather } from '../weather';
 
+const convertHumidityUnit = (humidityUnit: string) => {
+  if (humidityUnit === 'percent') {
+    return '%';
+  }
+  return humidityUnit;
+}
+
 export function WeatherApp() {
   const { data: weather, isLoading, error } = useCurrentWeather();
 
@@ -72,7 +79,7 @@ export function WeatherApp() {
                   <h3 className="text-lg font-semibold text-blue-100">Humidity</h3>
                 </div>
                 <div className="text-3xl font-bold text-white mb-1">
-                  {weather.data.humidity.value}{weather.data.humidity.unit}
+                  {weather.data.humidity.value} {convertHumidityUnit(weather.data.humidity.unit)}
                 </div>
                 <p className="text-sm text-blue-300">{weather.data.humidity.place}</p>
               </div>
