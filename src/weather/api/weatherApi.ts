@@ -13,8 +13,8 @@ export interface WeatherData {
       unit: string;
       recordTime: string;
     };
-    specialWxTips: string[];
-    warningMessage: string;
+    specialWxTips?: string[];
+    warningMessage?: string;
     uvindex: {
       place: string;
       value: number;
@@ -28,7 +28,7 @@ export interface WeatherData {
       recordTime: string;
     };
     updateTime: string;
-    tcmessage: string[];
+    tcmessage?: string[];
   };
   cached: boolean;
   timestamp: string;
