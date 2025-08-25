@@ -1,12 +1,39 @@
 // Types
 export interface WeatherData {
-  temperature: {
-    data: {
+  data: {
+    averageRainfall: {
+      unit: string;
+      value: number;
+      startTime: string;
+      endTime: string;
+    };
+    temperature: {
       place: string;
       value: number;
       unit: string;
-    }
+      recordTime: string;
+    };
+    specialWxTips: string[];
+    warningMessage: string;
+    uvindex: {
+      place: string;
+      value: number;
+      desc: string;
+      recordDesc: string;
+    };
+    humidity: {
+      unit: string;
+      value: number;
+      place: string;
+      recordTime: string;
+    };
+    updateTime: string;
+    tcmessage: string[];
   };
+  cached: boolean;
+  timestamp: string;
+  source: string;
+  language: string;
 }
 
 // Get current weather by city name

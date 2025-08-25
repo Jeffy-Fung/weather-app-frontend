@@ -26,23 +26,99 @@ export function WeatherApp() {
         )}
         
         {weather && (
-          <div className="bg-blue-800/50 backdrop-blur-sm rounded-xl p-8 max-w-md">
-            <h2 className="text-2xl font-bold mb-4 text-blue-100">
-              {weather.temperature.data.place}
-            </h2>
-            <div className="text-6xl font-bold mb-4 text-white">
-              {weather.temperature.data.value}°{weather.temperature.data.unit}
+          <div className="bg-blue-800/50 backdrop-blur-sm rounded-xl p-8 max-w-2xl">
+            {/* Main Temperature Display */}
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold mb-2 text-blue-100">
+                {weather.data.temperature.place}
+              </h2>
+              <div className="text-6xl font-bold mb-2 text-white">
+                {weather.data.temperature.value}°{weather.data.temperature.unit}
+              </div>
+              <p className="text-sm text-blue-300">
+                Recorded at {new Date(weather.data.temperature.recordTime).toLocaleString('zh-TW')}
+              </p>
             </div>
-            <p className="text-lg text-blue-200">
-              Current Temperature
-            </p>
+
+            {/* Weather Details Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              {/* Humidity */}
+              <div className="bg-blue-700/30 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-blue-100 mb-2">Humidity</h3>
+                <div className="text-2xl font-bold text-white">
+                  {weather.data.humidity.value}{weather.data.humidity.unit}
+                </div>
+                <p className="text-sm text-blue-300">{weather.data.humidity.place}</p>
+              </div>
+
+              {/* UV Index */}
+              <div className="bg-blue-700/30 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-blue-100 mb-2">UV Index</h3>
+                <div className="text-2xl font-bold text-white">
+                  {weather.data.uvindex.value} - {weather.data.uvindex.desc}
+                </div>
+                <p className="text-sm text-blue-300">{weather.data.uvindex.place}</p>
+              </div>
+
+              {/* Rainfall */}
+              <div className="bg-blue-700/30 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-blue-100 mb-2">Rainfall</h3>
+                <div className="text-2xl font-bold text-white">
+                  {weather.data.averageRainfall.value} {weather.data.averageRainfall.unit}
+                </div>
+                <p className="text-sm text-blue-300">Last hour</p>
+              </div>
+
+              {/* Update Time */}
+              <div className="bg-blue-700/30 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-blue-100 mb-2">Last Updated</h3>
+                <div className="text-sm text-white">
+                  {new Date(weather.data.updateTime).toLocaleString('zh-TW')}
+                </div>
+                <p className="text-xs text-blue-300">Source: {weather.source}</p>
+              </div>
+            </div>
+
+            {/* Special Weather Tips */}
+            {weather.data.specialWxTips.length > 0 && (
+              <div className="bg-yellow-600/30 rounded-lg p-4 mb-4">
+                <h3 className="text-lg font-semibold text-yellow-100 mb-2">Weather Tips</h3>
+                {weather.data.specialWxTips.map((tip, index) => (
+                  <p key={index} className="text-yellow-200 text-sm">{tip}</p>
+                ))}
+              </div>
+            )}
+
+            {/* Warning Messages */}
+            {weather.data.warningMessage && (
+              <div className="bg-red-600/30 rounded-lg p-4 mb-4">
+                <h3 className="text-lg font-semibold text-red-100 mb-2">Warnings</h3>
+                <p className="text-red-200 text-sm">{weather.data.warningMessage}</p>
+              </div>
+            )}
+
+            {/* TC Messages */}
+            {weather.data.tcmessage.length > 0 && (
+              <div className="bg-orange-600/30 rounded-lg p-4">
+                <h3 className="text-lg font-semibold text-orange-100 mb-2">Tropical Cyclone Info</h3>
+                {weather.data.tcmessage.map((message, index) => (
+                  <p key={index} className="text-orange-200 text-sm whitespace-pre-line">{message}</p>
+                ))}
+              </div>
+            )}
           </div>
         )}
 
         {/* Info Section */}
-        <div className="mt-8 text-sm text-blue-300 max-w-md">
+        <div className="mt-8 text-sm text-blue-300 max-w-2xl">
           <p>Real-time weather data from Hong Kong Observatory</p>
           <p className="mt-2">Data updates automatically every 5 minutes</p>
+          {weather && (
+            <p className="mt-2 text-xs">
+              Last API update: {new Date(weather.timestamp).toLocaleString('zh-TW')} 
+              {weather.cached && ' (cached)'}
+            </p>
+          )}
         </div>
       </header>
     </div>
