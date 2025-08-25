@@ -143,8 +143,8 @@ export function WeatherApp() {
                 </div>
                 <h3 className="text-lg font-semibold text-yellow-100">Weather Tips</h3>
               </div>
-              {weather.data.specialWxTips?.length > 0 ? (
-                weather.data.specialWxTips.map((tip, index) => (
+              {weather.data.specialWxTips && weather.data.specialWxTips.length > 0 ? (
+                 weather.data.specialWxTips.map((tip, index) => (
                   <p key={index} className="text-yellow-200 text-sm mb-2 last:mb-0">{tip}</p>
                 ))
               ) : (
@@ -179,8 +179,8 @@ export function WeatherApp() {
                 </div>
                 <h3 className="text-lg font-semibold text-orange-100">Tropical Cyclone Info</h3>
               </div>
-              {weather.data.tcmessage?.length > 0 ? (
-                weather.data.tcmessage.map((message, index) => (
+              {weather.data.tcmessage && weather.data.tcmessage.length > 0 ? (
+                 weather.data.tcmessage.map((message, index) => (
                   <p key={index} className="text-orange-200 text-sm whitespace-pre-line mb-2 last:mb-0">{message}</p>
                 ))
               ) : (
