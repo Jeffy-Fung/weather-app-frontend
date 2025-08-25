@@ -13,7 +13,7 @@ export interface WeatherData {
 export async function getCurrentWeather(): Promise<WeatherData> {
   try {
     const response = await fetch(
-      `https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=tc`
+      `${process.env.REACT_APP_WEATHER_BACKEND_URL}/api/v1/weather/current?lang=tc`
     );
 
     if (!response.ok) {
@@ -25,11 +25,7 @@ export async function getCurrentWeather(): Promise<WeatherData> {
 
     const data = await response.json();
 
-    return {
-      temperature: {
-        data: data.temperature.data[0]
-      }
-    };
+    return data;
   } catch (error) {
     throw new Error(error instanceof Error ? error.message : 'Failed to fetch weather data');
   }
