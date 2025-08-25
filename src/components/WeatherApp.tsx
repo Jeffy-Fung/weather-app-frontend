@@ -80,32 +80,38 @@ export function WeatherApp() {
             </div>
 
             {/* Special Weather Tips */}
-            {weather.data.specialWxTips.length > 0 && (
-              <div className="bg-yellow-600/30 rounded-lg p-4 mb-4">
-                <h3 className="text-lg font-semibold text-yellow-100 mb-2">Weather Tips</h3>
-                {weather.data.specialWxTips.map((tip, index) => (
+            <div className="bg-yellow-600/30 rounded-lg p-4 mb-4">
+              <h3 className="text-lg font-semibold text-yellow-100 mb-2">Weather Tips</h3>
+              {weather.data.specialWxTips.length > 0 ? (
+                weather.data.specialWxTips.map((tip, index) => (
                   <p key={index} className="text-yellow-200 text-sm">{tip}</p>
-                ))}
-              </div>
-            )}
+                ))
+              ) : (
+                <p className="text-yellow-200 text-sm">No weather tips at the moment</p>
+              )}
+            </div>
 
             {/* Warning Messages */}
-            {weather.data.warningMessage && (
-              <div className="bg-red-600/30 rounded-lg p-4 mb-4">
-                <h3 className="text-lg font-semibold text-red-100 mb-2">Warnings</h3>
+            <div className="bg-red-600/30 rounded-lg p-4 mb-4">
+              <h3 className="text-lg font-semibold text-red-100 mb-2">Warnings</h3>
+              {weather.data.warningMessage ? (
                 <p className="text-red-200 text-sm">{weather.data.warningMessage}</p>
-              </div>
-            )}
+              ) : (
+                <p className="text-red-200 text-sm">No warnings at the moment</p>
+              )}
+            </div>
 
             {/* TC Messages */}
-            {weather.data.tcmessage.length > 0 && (
-              <div className="bg-orange-600/30 rounded-lg p-4">
-                <h3 className="text-lg font-semibold text-orange-100 mb-2">Tropical Cyclone Info</h3>
-                {weather.data.tcmessage.map((message, index) => (
+            <div className="bg-orange-600/30 rounded-lg p-4">
+              <h3 className="text-lg font-semibold text-orange-100 mb-2">Tropical Cyclone Info</h3>
+              {weather.data.tcmessage.length > 0 ? (
+                weather.data.tcmessage.map((message, index) => (
                   <p key={index} className="text-orange-200 text-sm whitespace-pre-line">{message}</p>
-                ))}
-              </div>
-            )}
+                ))
+              ) : (
+                <p className="text-orange-200 text-sm">No tropical cyclone information at the moment</p>
+              )}
+            </div>
           </div>
         )}
 
