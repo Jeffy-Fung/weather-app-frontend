@@ -111,8 +111,7 @@ export function WeatherApp() {
 
         {/* Info Section */}
         <div className="mt-8 text-sm text-blue-300 max-w-2xl">
-          <p>Real-time weather data from Hong Kong Observatory</p>
-          <p className="mt-2">Data updates automatically every 5 minutes</p>
+          <p>Weather data from Hong Kong Observatory</p>
           {weather && (
             <p className="mt-2 text-xs">
               Last API update: {new Date(weather.timestamp).toLocaleString('zh-TW')} 
